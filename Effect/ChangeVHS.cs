@@ -12,7 +12,7 @@ public class ChangeVHS : MonoBehaviour
 
     private void Start()
     {
-        TaskManager.FinalTaskDone += ActivateObject;
+        DisableFinalRadio.OnFinalRadioUse += ActivateObject;
 
         _volume.profile.TryGet(out _vhs);
 
@@ -21,7 +21,7 @@ public class ChangeVHS : MonoBehaviour
 
     private void ActivateObject()
     {
-        TaskManager.FinalTaskDone -= ActivateObject;
+        DisableFinalRadio.OnFinalRadioUse -= ActivateObject;
 
         enabled = true;
     }
@@ -33,6 +33,6 @@ public class ChangeVHS : MonoBehaviour
 
     private void OnDestroy()
     {
-        TaskManager.FinalTaskDone -= ActivateObject;
+        DisableFinalRadio.OnFinalRadioUse -= ActivateObject;
     }
 }

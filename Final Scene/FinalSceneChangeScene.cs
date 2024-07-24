@@ -17,6 +17,6 @@ public class FinalSceneChangeScene : MonoBehaviour
     {
         yield return new WaitForSeconds(_time);
 
-        SceneManagerScript.LoadMenu();
+        SceneManagerScript.LoadNewspaperScene();
     }
 }

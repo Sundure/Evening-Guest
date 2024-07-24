@@ -12,6 +12,8 @@ public class BlackScreen : MonoBehaviour
         Bed.OnBedUse += ChoseEffect;
 
         TaskManager.BlackScreen += BlackScreenActivate;
+
+        FinalQuest.BlackScreen += BlackScreenActivate;
     }
     private void ChoseEffect(bool effect)
     {
@@ -43,5 +45,6 @@ public class BlackScreen : MonoBehaviour
         Door.BlackScreenActivate -= BlackScreenActivate;
         TaskManager.BlackScreen -= BlackScreenActivate;
         Bed.OnBedUse -= ChoseEffect;
+        FinalQuest.BlackScreen -= BlackScreenActivate;
     }
 }

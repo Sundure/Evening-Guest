@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
     public static SceneManagerScript Instance { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -14,18 +15,27 @@ public class SceneManagerScript : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
     public static void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
     }
+
     public static void LoadForest()
     {
         SceneManager.LoadScene("Forest");
     }
+
     public static void LoadHouse()
     {
         SceneManager.LoadScene("House");
     }
+
+    public static void LoadNewspaperScene()
+    {
+        SceneManager.LoadScene("Newspaper");
+    }
+
     public static void LoadFinalScene()
     {
         SceneManager.LoadScene("Final Scene");

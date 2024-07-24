@@ -5,14 +5,11 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    public static event Action FinalTaskDone;
     public static event Action BlackScreen;
 
     [SerializeField] private Animator _taskAnim;
     [SerializeField] private TextMeshProUGUI _taskText;
     [SerializeField] private AudioSource _taskAudio;
-
-    [SerializeField] private AudioClip _finalTaskClip;
 
     private bool _finalTask;
     private void Update()
@@ -53,11 +50,11 @@ public class TaskManager : MonoBehaviour
 
     private IEnumerator TaskCheckCoroutine(string task)
     {
+        _taskText.text = task;
+
         if (_finalTask == false)
         {
             _taskAnim.SetBool("New Task", true);
-
-            _taskText.text = task;
 
             yield return new WaitForEndOfFrame();
 
@@ -65,36 +62,8 @@ public class TaskManager : MonoBehaviour
 
             _taskAnim.SetBool("New Task", false);
         }
-        else
-        {
-            _taskText.text = task;
-
-            yield return new WaitForEndOfFrame();
-
-            _taskAudio.clip = _finalTaskClip;
-            _taskAudio.loop = true;
-            _taskAudio.volume = 0.4f;
-
-            float time = _taskAudio.clip.length;
-
-            _taskAudio.Play();
-
-            StartCoroutine(InvokeEvent(time));
-        }
     }
 
-    private IEnumerator InvokeEvent(float time)
-    {
-        FinalTaskDone?.Invoke();
-
-        yield return new WaitForSeconds((time - 0.5f) / _taskAudio.pitch);
-
-        BlackScreen?.Invoke();
-
-        yield return new WaitForSeconds(0.5f);
-
-        SceneManagerScript.LoadFinalScene();
-    }
 
     private void OnDestroy()
     {

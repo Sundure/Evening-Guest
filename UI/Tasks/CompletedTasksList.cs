@@ -11,6 +11,7 @@ public class CompletedTasksList : MonoBehaviour
     public static event Action ActivateSofa;
     public static event Action ActivateForestTriger;
     public static event Action ActivateBed;
+    public static event Action ChangeScene;
 
     private void Start()
     {
@@ -123,6 +124,8 @@ public class CompletedTasksList : MonoBehaviour
         _taskList.ChangeTask();
 
         DisableFinalRadio.OnFinalRadioUse -= FinalQuest;
+
+        ChangeScene?.Invoke();
     }
 
 
